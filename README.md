@@ -1,41 +1,65 @@
-# Homebrew Cask для SystemEQ for Mac
+# Homebrew Cask for SystemEQ for Mac
 
-## Для користувачів
+> 🇬🇧 English | 🇮🇹 [Italiano](README.it.md) | 🇺🇦 [Українська](README.ua.md)
 
-### Встановлення
+System-wide parametric equalizer for macOS 13+ — [main repository](https://github.com/denzam/SystemEQ-for-Mac).
+
+## Installation
+
 ```bash
 brew tap denzam/systemeq
 brew install --cask systemeq
 ```
 
-### Оновлення
+The cask automatically removes the macOS quarantine attribute on install, so the
+app launches without any Gatekeeper warning (SystemEQ is ad-hoc signed, not
+notarized with an Apple Developer ID — see the [main README](https://github.com/denzam/SystemEQ-for-Mac#installation)
+for the rationale).
+
+## Update
+
 ```bash
 brew upgrade --cask systemeq
 ```
 
-### Видалення
+## Uninstall
+
 ```bash
 brew uninstall --cask systemeq
 ```
 
----
+The cask's `zap` stanza also cleans up Application Support, Preferences and Caches:
 
-## Для розробника (налаштування Homebrew Tap)
-
-### Крок 1: Створити окремий репозиторій
-Створіть репозиторій на GitHub з назвою `homebrew-systemeq`
-
-### Крок 2: Додати формулу
 ```bash
-git clone https://github.com/denzam/homebrew-systemeq.git
-mkdir -p homebrew-systemeq/Casks
-cp Casks/systemeq.rb homebrew-systemeq/Casks/
-cd homebrew-systemeq
-git add . && git commit -m "Add SystemEQ cask"
-git push
+brew uninstall --cask --zap systemeq
 ```
 
-### Крок 3: Оновлення при новому релізі
-1. Оновити `version` в `systemeq.rb`
-2. Оновити `sha256` (отримати: `shasum -a 256 SystemEQ-v*.dmg`)
-3. Push в `homebrew-systemeq` репозиторій
+## Requirements
+
+- macOS 13 (Ventura) or later
+- Apple Silicon or Intel Mac
+- [BlackHole 2ch](https://github.com/ExistentialAudio/BlackHole) (free virtual audio driver, installed via the in-app Setup Assistant)
+
+## For maintainers — updating the cask after a new release
+
+1. Wait for the GitHub release workflow to publish `SystemEQ-v<version>.dmg`.
+2. Compute the SHA-256 of the published DMG:
+   ```bash
+   curl -sL https://github.com/denzam/SystemEQ-for-Mac/releases/download/v<version>/SystemEQ-v<version>.dmg | shasum -a 256
+   ```
+3. In `Casks/systemeq.rb` bump `version` and replace `sha256`.
+4. Commit and push:
+   ```bash
+   git commit -am "Bump SystemEQ to v<version>"
+   git push
+   ```
+5. Verify locally:
+   ```bash
+   brew update
+   brew info --cask denzam/systemeq/systemeq
+   ```
+
+## License
+
+The cask formula in this repository is released under the same license as
+SystemEQ for Mac itself — [GNU GPL v3](https://github.com/denzam/SystemEQ-for-Mac/blob/main/LICENSE).
