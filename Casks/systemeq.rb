@@ -1,13 +1,13 @@
 cask "systemeq" do
-  version "1.1.0"
-  sha256 "d3ff766b72700a0ea9af9078860afc23361429f52fe45af89ee76d6173649edf"
+  version "1.1.1"
+  sha256 "d0a085d538f4cd8108b907776eb6ec3ba6e620fab015e15b70082a3a70ac1e8e"
 
   url "https://github.com/denzam/SystemEQ-for-Mac/releases/download/v#{version}/SystemEQ-v#{version}.dmg"
   name "SystemEQ for Mac"
-  desc "System-wide equalizer for macOS with AutoEQ support"
+  desc "System-wide equalizer with AutoEQ support"
   homepage "https://github.com/denzam/SystemEQ-for-Mac"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "SystemEQ for Mac.app"
 
@@ -18,7 +18,7 @@ cask "systemeq" do
 
   zap trash: [
     "~/Library/Application Support/SystemEQ",
-    "~/Library/Preferences/com.denzam.SystemEQ.plist",
     "~/Library/Caches/com.denzam.SystemEQ",
+    "~/Library/Preferences/com.denzam.SystemEQ.plist",
   ]
 end
