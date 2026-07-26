@@ -8,8 +8,15 @@ Equalizzatore parametrico a livello di sistema per macOS 13+ — [repository pri
 
 ```bash
 brew tap denzam/systemeq
+brew trust denzam/systemeq
 brew install --cask systemeq
 ```
+
+Da Homebrew 6.0 i tap di terze parti devono essere resi attendibili in modo
+esplicito, altrimenti l'installazione fallisce con `Refusing to load cask ...
+from untrusted tap`. Il proprietario del tap non può farlo al posto tuo, quindi
+è un comando da eseguire una volta per Mac. Su Homebrew 5 e precedenti il
+comando non esiste: saltalo.
 
 Il Cask rimuove automaticamente l'attributo di quarantena di macOS durante
 l'installazione, così l'app si avvia senza alcun avviso di Gatekeeper

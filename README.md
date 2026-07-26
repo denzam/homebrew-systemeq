@@ -8,8 +8,15 @@ System-wide parametric equalizer for macOS 13+ — [main repository](https://git
 
 ```bash
 brew tap denzam/systemeq
+brew trust denzam/systemeq
 brew install --cask systemeq
 ```
+
+Since Homebrew 6.0, third-party taps must be trusted explicitly before Homebrew
+will load them — without `brew trust` the install fails with
+`Refusing to load cask ... from untrusted tap`. A tap owner cannot grant this on
+your behalf, so it is a one-time command on each Mac. On Homebrew 5 and older the
+command does not exist; skip it there.
 
 The cask automatically removes the macOS quarantine attribute on install, so the
 app launches without any Gatekeeper warning (SystemEQ is ad-hoc signed, not

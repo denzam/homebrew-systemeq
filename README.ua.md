@@ -8,8 +8,14 @@
 
 ```bash
 brew tap denzam/systemeq
+brew trust denzam/systemeq
 brew install --cask systemeq
 ```
+
+Починаючи з Homebrew 6.0, сторонні тапи треба явно позначити довіреними —
+без `brew trust` встановлення падає з `Refusing to load cask ... from untrusted
+tap`. Власник тапу зробити це за вас не може, тому команда виконується один раз
+на кожному Mac. На Homebrew 5 і старіших такої команди немає — пропустіть її.
 
 Cask автоматично знімає quarantine-атрибут macOS під час встановлення, тож
 застосунок запускається без жодного попередження Gatekeeper (SystemEQ
