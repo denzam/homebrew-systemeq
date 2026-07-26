@@ -41,6 +41,27 @@ The cask's `zap` stanza also cleans up Application Support, Preferences and Cach
 brew uninstall --cask --zap systemeq
 ```
 
+## Troubleshooting
+
+### `Error: Refusing to load cask ... from untrusted tap`
+
+Homebrew 6.0 will not load a third-party tap until you mark it as trusted, and a
+tap owner cannot grant that for you. Run this once per Mac, then install or
+upgrade as usual:
+
+```bash
+brew trust denzam/systemeq
+brew upgrade --cask systemeq   # or: brew install --cask systemeq
+```
+
+On Homebrew 5 and older the `trust` command does not exist — skip it.
+
+### The app asks for microphone access again after an update
+
+Expected. SystemEQ is ad-hoc signed, so its signature changes with every build
+and macOS treats each update as a new app. Grant it again in
+**System Settings → Privacy & Security → Microphone**.
+
 ## Requirements
 
 - macOS 13 (Ventura) or later
